@@ -10,5 +10,5 @@ ob_implicit_flush();
 require_once('./core/SocketChat.php');
 
 //run server
-$port = 8090;
+$port = 8999;
 new NickBai\SocketChat( $port );
