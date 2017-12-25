@@ -1,8 +1,4 @@
 <?php
-/**
- * author: NickBai
- * createTime: 2017/12/19
- */
 namespace NickBai;
 
 class SocketChat
