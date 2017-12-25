@@ -7,4 +7,4 @@ require_once('./core/SocketChat.php');
 
 //run server
 $port = 8090;
-new NickBai\SocketChat( $port );
+new Core\SocketChat( $port );

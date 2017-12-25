@@ -1,5 +1,5 @@
 <?php
-namespace NickBai;
+namespace Core;
 
 class SocketChat
 {
