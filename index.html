@@ -17,10 +17,11 @@
         <div class="col-sm-6">
             <div class="ibox chat-view">
                 <div class="ibox-title">
-                    <a href="javascript:;" id="loginOut" class="roll-nav roll-right J_tabExit" style="float: right;height: 20px"><i class="fa fa fa-sign-out"></i> 退出</a>
-                    <span id="tips">聊天窗口</span>
+                    <span id="tips" style="float: left;">聊天窗口</span>
+                    <a href="javascript:;" id="loginOut" class="roll-nav roll-right J_tabExit" style="margin-left:10px;float: left;height: 20px">退出</a>
+                    <a style="float: right;height: 20px" href="javascript:;" class="user-list"><img src="static/img/friend.png" style="width: 20px;"/></a>
                 </div>
-                <div class="ibox-content" style="background: none;">
+                <div class="ibox-content">
                     <div class="row">
                         <div class="col-md-9 ">
                             <div class="chat-discussion" id="chatbox">
@@ -123,7 +124,7 @@
             </div>
         </div>
     </div>
-    <div style="width: 100%;position: fixed;left:0;bottom:10px;">
+    <div style="width: 100%;position: absolute;left:0;bottom:10px;">
         <div class="col-sm-12">
             <div class="chat-message-form">
                 <div class="form-group">
