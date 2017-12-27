@@ -11,7 +11,7 @@
     <link href="static/layer/skin/default/layer.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight" style="height: 100%;" >
+<div class="wrapper wrapper-content animated fadeInRight" style="width: 100%;">
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class="footer-send" style="width: 100%;position: absolute;left:0;bottom:10px;padding: 0 20px;">
+    <div class="footer-send" style="width: 100%;position: fixed;left:0;bottom:10px;padding: 0 20px;">
         <div class="chat-message-form">
             <div class="form-group">
                 <input  type="text" class="form-control" name="message" placeholder="输入消息内容" id="message" style="width: 80%;border-radius: 5px;float: left;">
@@ -107,11 +107,30 @@
                 title:'在线好友',
                 skin: 'layui-layer-demo', //加上边框
                 closeBtn: 1, //不显示关闭按钮
-                area: ['380px', '80%'], //宽高
+                area: ['350px', '80%'], //宽高
                 content: $("#userBox")
             });
         })
+        $("#message").on("focus",function(){
+            var winobj = $(window),
+                scope = this,
+                agent = navigator.userAgent.toLowerCase();
+            setTimeout(function () {
+                if (agent.indexOf('safari') != -1 && agent.indexOf('mqqbrowser') == -1
+                    && agent.indexOf('coast') == -1 && agent.indexOf('android') == -1
+                    && agent.indexOf('linux') == -1 && agent.indexOf('firefox') == -1) {//safra浏览器
+                    window.scrollTo(0, 1000000);//先滚动到最底部，再用scrollY得到当前的值，必须延迟 否则拿到的就是1000000
+                    setTimeout(function(){
+                        window.scrollTo(0, window.scrollY - 45);//45像素 所有浏览器都是这么高
+                    }, 50)
+                } else {//其他浏览器
+                    window.scrollTo(0, 1000000);
+                    // window.scrollTo(0, ++this.scrollNum);
+                }
+            }, 200);
+        })
     });
+
     //检查登录
     function checkLogin(){
         var user_info = localStorage.getItem("userInfo");
@@ -130,7 +149,7 @@
             title:'欢迎加入聊天室',
             skin: 'layui-layer-demo', //加上边框
             closeBtn: 0, //不显示关闭按钮
-            area: ['380px', '200px'], //宽高
+            area: ['350px', '200px'], //宽高
             content: $("#loginBox")
         });
 
