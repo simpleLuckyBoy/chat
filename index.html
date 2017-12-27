@@ -19,7 +19,7 @@
                 <div class="ibox-title">
                     <span id="tips" style="float: left;">聊天窗口</span>
                     <a href="javascript:;" id="loginOut" class="roll-nav roll-right J_tabExit" style="margin-left:10px;float: left;height: 20px">退出</a>
-                    <a style="float: right;height: 20px" href="javascript:;" class="user-list"><img src="static/img/friend.png" style="width: 20px;"/></a>
+                    <a style="float: right;height: 20px" href="javascript:;" class="user"><img src="static/img/friend.png" style="width: 20px;"/></a>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -113,12 +113,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="col-md-3">-->
-                            <!--<div class="chat-users">-->
-                                <!--<div class="users-list">-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -152,7 +146,12 @@
         </div>
     </form>
 </div>
-
+<div class="ibox-content" style="display: none;position: relative" id="userBox">
+    <div class="chat-users">
+        <div class="users-list">
+        </div>
+    </div>
+</div>
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/layer/layer.js"></script>
@@ -164,33 +163,42 @@
         checkLogin();// 应该看的是够链接 而不是是否有信息
         //send message
         $('.send-btn').on('click',function(e){
-            if($.trim($("#message").val())!=""){
-                sendMessage();
-                $("#message").val("");
-                $(".send-btn").css("background","#ccc").css("color","#000");
-            }
-        });
-       $("#message").bind("input",function(){
-           if($.trim($(this).val())!=""){
-                $(".send-btn").css("background","#28a745").css("color","#fff");
-           }else{
-               $(".send-btn").css("background","#ccc").css("color","#000");
-           }
-       });
-        //login
-    $("#lgbtn").click(function(){
-        if( $("#uname").val() == '' ){
-            layer.alert('用户名不能为空', {"title":"友情提示", "icon":2});
-            return false;
+        if($.trim($("#message").val())!=""){
+            sendMessage();
+            $("#message").val("");
+            $(".send-btn").css("background","#ccc").css("color","#000");
         }
-        doLogin($("#uname").val());
+        });
+        $("#message").bind("input",function(){
+        if($.trim($(this).val())!=""){
+            $(".send-btn").css("background","#28a745").css("color","#fff");
+        }else{
+           $(".send-btn").css("background","#ccc").css("color","#000");
+        }
+        });
+        //login
+        $("#lgbtn").click(function(){
+            if( $("#uname").val() == '' ){
+                layer.alert('用户名不能为空', {"title":"友情提示", "icon":2});
+                return false;
+            }
+            doLogin($("#uname").val());
             layer.close( logbox );
         });
         $("#loginOut").click(function(){
             loginOut();
         })
+        $(".user").click(function(){
+            var userbox = layer.open({
+                type: 1,
+                title:'在线好友',
+                skin: 'layui-layer-demo', //加上边框
+                closeBtn: 1, //不显示关闭按钮
+                area: ['380px', '80%'], //宽高
+                content: $("#userBox")
+            });
+        })
     });
-
     //检查登录
     function checkLogin(){
         var user_info = localStorage.getItem("userInfo");
