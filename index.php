@@ -6,6 +6,5 @@ ob_implicit_flush();
 require_once('./core/SocketChat.php');
 
 //run server
-//提交测试
 $port = 8090;
 new Core\SocketChat( $port );
