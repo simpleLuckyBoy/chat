@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-9 ">
                             <div class="chat-discussion" id="chatbox">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
             avar = 'a' + avar + '.jpg';
         }
         // 创建一个Socket实例
-        ws = new WebSocket('ws://127.0.0.1:8090');
+        ws = new WebSocket('ws://120.79.92.202:8090');
         var loading = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
         ws.onopen = function(){
             console.log("握手成功");
